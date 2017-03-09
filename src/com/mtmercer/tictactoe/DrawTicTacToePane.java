@@ -29,20 +29,19 @@ public class DrawTicTacToePane extends JPanel implements ComponentListener {
     }
 
     private void drawGrid(Graphics g, Dimension d) {
-        g.drawLine(d.width/3, d.height, d.width/3, 0);
-        g.drawLine((d.width/3) * 2, d.height, (d.width/3) * 2, 0);
-        g.drawLine(d.width, d.height/3, 0, d.height/3);
-        g.drawLine(d.width, (d.height/3) * 2, 0, (d.height/3) * 2);
+        g.drawLine(d.width / 3, d.height, d.width / 3, 0);
+        g.drawLine((d.width / 3) * 2, d.height, (d.width / 3) * 2, 0);
+        g.drawLine(d.width, d.height / 3, 0, d.height / 3);
+        g.drawLine(d.width, (d.height / 3) * 2, 0, (d.height / 3) * 2);
     }
 
     @Override
     public void componentResized(ComponentEvent e) {
         Rectangle b = getParent().getBounds();
         // Makes the tictactoe view always a square based in the parent
-        if(b.width < b.height) {
+        if (b.width < b.height) {
             e.getComponent().setBounds(b.x, b.y, b.width, b.width);
-        }
-        else {
+        } else {
             e.getComponent().setBounds(b.x, b.y, b.height, b.height);
         }
     }

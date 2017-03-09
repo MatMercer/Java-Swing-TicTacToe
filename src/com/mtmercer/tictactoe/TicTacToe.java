@@ -2,8 +2,6 @@ package com.mtmercer.tictactoe;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 
 public class TicTacToe extends JFrame {
     //TODO: Implement game logic and drawer
@@ -17,8 +15,7 @@ public class TicTacToe extends JFrame {
         // Load the system look and feel
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        }
-        catch (IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException | ClassNotFoundException e) {
+        } catch (IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException | ClassNotFoundException e) {
             System.err.println("Failed to set the default system look and feel: " + e.getMessage());
         }
 
