@@ -35,6 +35,9 @@ public class TicTacToePanel extends JPanel implements ComponentListener, ActionL
 
         // Draw the grid
         this.drawGrid(g, size);
+
+        // Draw the game
+        this.drawTicTacToeGame(g, size);
     }
 
     private void drawGrid(Graphics g, Dimension d) {
@@ -43,6 +46,49 @@ public class TicTacToePanel extends JPanel implements ComponentListener, ActionL
         g.drawLine((d.width / 3) * 2, d.height, (d.width / 3) * 2, 0);
         g.drawLine(d.width, d.height / 3, 0, d.height / 3);
         g.drawLine(d.width, (d.height / 3) * 2, 0, (d.height / 3) * 2);
+    }
+
+    private void drawTicTacToeGame(Graphics g, Dimension d) {
+        // It is based in the size of the square - sqrsize/10 of it
+        int shapeWidth = (d.width / 3) - d.width / 10;
+        // Where the shape should be draw, a constant to automatically centers the shape in the square based in the idx
+        int centerRatio = (d.width / 3);
+        // Center constant with shape padding
+        int shapePaddingConst = (d.width / 10) / 2;
+
+        int i = 0;
+        for (TicTacToePiece[] row : this.ticTacToeGame.getGameBoard()) {
+            int j = 0;
+            for (TicTacToePiece piece : row) {
+                if (piece != null) {
+                    if(piece.getType() == TicTacToePieceType.O) {
+                        g.drawOval(
+                                centerRatio * i + shapePaddingConst,
+                                centerRatio * j + shapePaddingConst,
+                                shapeWidth,
+                                shapeWidth);
+                    }
+                    else if (piece.getType() == TicTacToePieceType.X){
+                        // '\' part of the X
+                        g.drawLine(
+                                centerRatio * i + shapePaddingConst,
+                                centerRatio * j + shapePaddingConst,
+                                (centerRatio * i + shapePaddingConst) + shapeWidth,
+                                (centerRatio * j + shapePaddingConst) + shapeWidth
+                        );
+                        // '/' part of the X
+                        g.drawLine(
+                                (centerRatio * i + shapePaddingConst) + shapeWidth,
+                                centerRatio * j + shapePaddingConst,
+                                centerRatio * i + shapePaddingConst,
+                                (centerRatio * j + shapePaddingConst) + shapeWidth
+                        );
+                    }
+                }
+                j += 1;
+            }
+            i += 1;
+        }
     }
 
     @Override
