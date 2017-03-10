@@ -2,10 +2,13 @@ package com.mtmercer.tictactoe;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.security.InvalidParameterException;
 
-public class TicTacToePanel extends JPanel implements ComponentListener, MouseListener{
+public class TicTacToePanel extends JPanel implements ComponentListener, MouseListener {
     //TODO: Implement game logic in a different class
     private TicTacToe ticTacToeGame;
     // Makes the game shuffle between a X and O piece
@@ -63,14 +66,13 @@ public class TicTacToePanel extends JPanel implements ComponentListener, MouseLi
             int j = 0;
             for (TicTacToePiece piece : row) {
                 if (piece != null) {
-                    if(piece.getType() == TicTacToePieceType.O) {
+                    if (piece.getType() == TicTacToePieceType.O) {
                         g.drawOval(
                                 centerRatio * i + shapePaddingConst,
                                 centerRatio * j + shapePaddingConst,
                                 shapeWidth,
                                 shapeWidth);
-                    }
-                    else if (piece.getType() == TicTacToePieceType.X){
+                    } else if (piece.getType() == TicTacToePieceType.X) {
                         // '\' part of the X
                         g.drawLine(
                                 centerRatio * i + shapePaddingConst,
@@ -110,17 +112,15 @@ public class TicTacToePanel extends JPanel implements ComponentListener, MouseLi
         int idxY = e.getY() / (this.getHeight() / 3);
 
         try {
-            if(this.lastUsedPiece == TicTacToePieceType.O) {
+            if (this.lastUsedPiece == TicTacToePieceType.O) {
                 this.ticTacToeGame.insertXAt(idxX, idxY);
                 this.lastUsedPiece = TicTacToePieceType.X;
-            }
-            else if (this.lastUsedPiece == TicTacToePieceType.X) {
+            } else if (this.lastUsedPiece == TicTacToePieceType.X) {
                 this.ticTacToeGame.insertOAt(idxX, idxY);
                 this.lastUsedPiece = TicTacToePieceType.O;
             }
             this.repaint();
-        }
-        catch (InvalidParameterException ex) {
+        } catch (InvalidParameterException ex) {
             System.err.println("Failed to insert a piece at " + idxX + ":" + idxY + ". Is there already a piece placed there?");
         }
     }

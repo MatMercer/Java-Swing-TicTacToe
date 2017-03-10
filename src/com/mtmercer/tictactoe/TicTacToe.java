@@ -13,6 +13,7 @@ public class TicTacToe {
     public TicTacToePiece[][] getGameBoard() {
         return this.gameBoard;
     }
+
     private void insertPieceAt(TicTacToePieceType type, int row, int column) throws InvalidParameterException {
         // Does the row and column is valid?
         if (row < 0 || column < 0 || row > 2 || column > 2) {
