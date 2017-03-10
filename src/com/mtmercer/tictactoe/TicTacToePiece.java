@@ -14,13 +14,11 @@ public class TicTacToePiece {
 
     @Override
     public String toString() {
-        if(this.getType() == TicTacToePieceType.O) {
+        if (this.getType() == TicTacToePieceType.O) {
             return "O";
-        }
-        else if(this.getType() == TicTacToePieceType.X) {
+        } else if (this.getType() == TicTacToePieceType.X) {
             return "X";
-        }
-        else {
+        } else {
             return ".";
         }
     }

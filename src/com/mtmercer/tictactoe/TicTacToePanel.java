@@ -9,13 +9,15 @@ import java.awt.event.ComponentListener;
 
 public class TicTacToePanel extends JPanel implements ComponentListener, ActionListener {
     //TODO: Implement game logic in a different class
-    private TicTacToe ticTacToe;
+    private TicTacToe ticTacToeGame;
 
     public TicTacToePanel() {
+        // Instantiates the tictactoe game
+        this.ticTacToeGame = new TicTacToe();
+
         //TODO: Change the background color
         // Implements the component listener
         this.addComponentListener(this);
-        this.ticTacToe = new TicTacToe();
     }
 
     @Override

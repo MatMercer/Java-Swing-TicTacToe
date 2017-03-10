@@ -25,7 +25,7 @@ public class Game extends JFrame {
         // Setup the layout
         this.setLayout(new BorderLayout());
 
-        // Add the drawer panel
+        // Add the tictactoe panel
         this.add(new TicTacToePanel());
 
         // Pack the layout and centers the frame
