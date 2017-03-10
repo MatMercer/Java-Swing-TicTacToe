@@ -2,22 +2,23 @@ package com.mtmercer.tictactoe;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
+import java.awt.event.*;
+import java.security.InvalidParameterException;
 
-public class TicTacToePanel extends JPanel implements ComponentListener, ActionListener {
+public class TicTacToePanel extends JPanel implements ComponentListener, MouseListener{
     //TODO: Implement game logic in a different class
     private TicTacToe ticTacToeGame;
+    // Makes the game shuffle between a X and O piece
+    private TicTacToePieceType lastUsedPiece = TicTacToePieceType.O;
 
     public TicTacToePanel() {
         // Instantiates the tictactoe game
         this.ticTacToeGame = new TicTacToe();
 
         //TODO: Change the background color
-        // Implements the component listener
+        // Adds the listeners
         this.addComponentListener(this);
+        this.addMouseListener(this);
     }
 
     @Override
@@ -57,6 +58,7 @@ public class TicTacToePanel extends JPanel implements ComponentListener, ActionL
         int shapePaddingConst = (d.width / 10) / 2;
 
         int i = 0;
+        //TODO: Make a interator to tictactoe to make the gameboard read only
         for (TicTacToePiece[] row : this.ticTacToeGame.getGameBoard()) {
             int j = 0;
             for (TicTacToePiece piece : row) {
@@ -103,13 +105,26 @@ public class TicTacToePanel extends JPanel implements ComponentListener, ActionL
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        //TODO: Add game logic class and a matrix to control the game inside it
+    public void mouseClicked(MouseEvent e) {
+        int idxX = e.getX() / (this.getWidth() / 3);
+        int idxY = e.getY() / (this.getHeight() / 3);
+
+        try {
+            if(this.lastUsedPiece == TicTacToePieceType.O) {
+                this.ticTacToeGame.insertXAt(idxX, idxY);
+                this.lastUsedPiece = TicTacToePieceType.X;
+            }
+            else if (this.lastUsedPiece == TicTacToePieceType.X) {
+                this.ticTacToeGame.insertOAt(idxX, idxY);
+                this.lastUsedPiece = TicTacToePieceType.O;
+            }
+            this.repaint();
+        }
+        catch (InvalidParameterException ex) {
+            System.err.println("Failed to insert a piece at " + idxX + ":" + idxY + ". Is there already a piece placed there?");
+        }
     }
 
-    //TODO: Implement X and O draw
-
-    @Override
     public void componentMoved(ComponentEvent e) {
     }
 
@@ -121,4 +136,23 @@ public class TicTacToePanel extends JPanel implements ComponentListener, ActionL
     public void componentHidden(ComponentEvent e) {
     }
 
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
 }
