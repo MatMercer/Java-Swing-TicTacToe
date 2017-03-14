@@ -22,4 +22,18 @@ public class TicTacToePiece {
             return ".";
         }
     }
+
+    @Override
+    public boolean equals(Object ob) {
+        if (ob == null) {
+            return false;
+        }
+        if (ob.getClass() != getClass()) {
+            return false;
+        }
+
+        TicTacToePiece otherPiece = (TicTacToePiece)ob;
+
+        return otherPiece.getType() == this.getType();
+    }
 }
