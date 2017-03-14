@@ -32,7 +32,7 @@ public class TicTacToePiece {
             return false;
         }
 
-        TicTacToePiece otherPiece = (TicTacToePiece)ob;
+        TicTacToePiece otherPiece = (TicTacToePiece) ob;
 
         return otherPiece.getType() == this.getType();
     }

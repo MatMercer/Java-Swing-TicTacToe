@@ -38,7 +38,7 @@ public class TicTacToePanel extends JPanel implements ComponentListener, MouseLi
         // Calculates what is the current size of the screen
         super.paintComponent(g);
         // Creates a 2D graphis
-        Graphics2D g2 = (Graphics2D)g;
+        Graphics2D g2 = (Graphics2D) g;
 
         int x = this.getWidth();
         int y = this.getHeight();
@@ -52,8 +52,7 @@ public class TicTacToePanel extends JPanel implements ComponentListener, MouseLi
 
             // Draw the game
             this.drawTicTacToeGame(g2, size);
-        }
-        else {
+        } else {
             this.drawGameOver(g2, size);
         }
     }
@@ -61,13 +60,12 @@ public class TicTacToePanel extends JPanel implements ComponentListener, MouseLi
     private void drawGameOver(Graphics2D g, Dimension size) {
         g.setColor(new Color(0, 191, 15));
         g.setStroke(new BasicStroke(5));
-        if(this.winnerPiece == TicTacToePieceType.X) {
+        if (this.winnerPiece == TicTacToePieceType.X) {
             g.drawLine(0, 0, size.width, size.height);
             g.drawLine(0, size.height, size.width, 0);
-        }else if(this.winnerPiece == TicTacToePieceType.O){
+        } else if (this.winnerPiece == TicTacToePieceType.O) {
             g.drawOval(0, 0, size.width, size.height);
-        }
-        else {
+        } else {
             g.setColor(new Color(255, 0, 30));
             g.setStroke(new BasicStroke(10));
             g.drawLine(0, size.height, size.width, 0);
@@ -142,7 +140,7 @@ public class TicTacToePanel extends JPanel implements ComponentListener, MouseLi
         int idxY = e.getY() / (this.getHeight() / 3);
 
         try {
-            if(gameOver) {
+            if (gameOver) {
                 gameOver = false;
                 this.repaint();
                 return;
@@ -166,12 +164,11 @@ public class TicTacToePanel extends JPanel implements ComponentListener, MouseLi
     private void checkGameover() {
         TicTacToePieceType winner = this.ticTacToeGame.winner();
 
-        if(winner != null) {
+        if (winner != null) {
             this.ticTacToeGame.resetGame();
             this.gameOver = true;
             this.winnerPiece = winner;
-        }
-        else if (this.ticTacToeGame.gameOver()) {
+        } else if (this.ticTacToeGame.gameOver()) {
             this.ticTacToeGame.resetGame();
             this.gameOver = true;
             this.winnerPiece = null;
