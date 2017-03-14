@@ -165,6 +165,18 @@ public class TicTacToe {
         return winner;
     }
 
+    public boolean gameOver() {
+        for (TicTacToePiece[] row : this.getGameBoard()) {
+            for(TicTacToePiece piece : row) {
+                if(piece == null) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
     public void resetGame() {
         this.gameBoard = new TicTacToePiece[3][3];
     }
