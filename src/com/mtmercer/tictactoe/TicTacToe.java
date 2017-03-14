@@ -165,9 +165,8 @@ public class TicTacToe {
         return winner;
     }
 
-    //TODO: Implement this
     public void resetGame() {
-        //TODO: Resets the game
+        this.gameBoard = new TicTacToePiece[3][3];
     }
 
     @Override
