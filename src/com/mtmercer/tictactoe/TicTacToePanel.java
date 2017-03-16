@@ -39,6 +39,7 @@ public class TicTacToePanel extends JPanel implements ComponentListener, MouseLi
         super.paintComponent(g);
         // Creates a 2D graphis
         Graphics2D g2 = (Graphics2D) g;
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         int x = this.getWidth();
         int y = this.getHeight();
